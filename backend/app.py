@@ -2,10 +2,10 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy import create_engine
-from openai import OpenAI
 from sqlalchemy import text
 from flask_cors import CORS
 import openai
+from openai import OpenAI
 import os
 from llama_index.llms.openai import OpenAI
 from llama_index.core import SQLDatabase
@@ -21,7 +21,7 @@ OPENAI_API_KEY = ""
 
 # PostgreSQL connection configuration
 # Replace 'postgres://username:password@localhost:5432/hris' with your actual connection string
-database_url = 'postgresql://postgres:RavenKnight97@localhost:5432/hris'
+database_url = 'postgresql://postgres:MGarurumon97@localhost:5432/hris'
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
@@ -178,7 +178,7 @@ def employee_ai():
         return jsonify({'error': 'Content is required'}), 400
 
     try:
-        completion = client.chat.completions.create(
+        completion = openai.chat.completions.create(
             model="ft:gpt-3.5-turbo-0125:personal::9luaAwx2",
             messages=[
                 {"role": "system", "content": "You are an assistant to output SQL queries for INSERT or UPDATE statements only."},
