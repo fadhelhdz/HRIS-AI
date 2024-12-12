@@ -1,0 +1,7 @@
+Flask 
+sqlalchemy 
+psycopg2-binary 
+openai 
+llama-index 
+flask-cors 
+flask-sqlalchemy
